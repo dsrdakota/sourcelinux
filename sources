@@ -1,0 +1,28 @@
+BINUTILS=git://sourceware.org/git/binutils-gdb.git
+GLIBC=git://sourceware.org/git/glibc.git
+#BOOTSCRIPTS=http://clfs.org/files/packages/embedded-0.0.1/clfs-embedded-bootscripts-1.0-pre5.tar.bz2
+BOOTSCRIPTS=http://clfs.org/files/bootscripts-cross-lfs-2.0-pre2.tar.xz
+GCC=git://gcc.gnu.org/git/gcc.git
+GCC_BRANCH=gcc-8-branch
+MPC=https://scm.gforge.inria.fr/anonscm/git/mpc/mpc.git
+MPFR=https://www.mpfr.org/mpfr-current/mpfr-4.0.2.tar.xz
+#GMP=https://gmplib.org/download/gmp/gmp-6.1.2.tar.lz
+GMP_HG=https://gmplib.org/repo/gmp-6.1/
+ZLIB=https://github.com/madler/zlib.git
+GIT=git
+HG=hg
+WGET=wget
+SH=bash -himBHs
+
+set +h
+
+$GIT clone $BINUTILS
+$GIT clone $GLIBC
+$GIT clone git://git.busybox.net/busybox
+$WGET -O./out/bootscripts.bz2 $BOOTSCRIPTS 
+$GIT clone $GCC -b $GCC_BRANCH
+#$WGET -O./out/gmp.lz $GMP
+$HG clone hg clone $GMP_HG gmp
+$GIT clone $MPC
+$WGET -O./out/mpfr.tar.xz $MPFR
+
